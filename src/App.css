@@ -30,7 +30,7 @@
   gap: 12px;
 }
 
-.card {
+.instructor-card {
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 16px;
@@ -38,11 +38,11 @@
   cursor: pointer;
 }
 
-.card:hover {
+.instructor-card:hover {
   background: #f5f5f5;
 }
 
-.card h2 {
+.instructor-card h2 {
   margin-top: 0;
   color: #2563eb;
 }

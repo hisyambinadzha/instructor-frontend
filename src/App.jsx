@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import './App.css'
+import InstructorList from './components/InstructorList';
 
 function App() {
-  const instructors = [
+  const [instructors, setInstructors] = useState([
     {
       id: "1",
       name: "Alice Joshson",
@@ -24,22 +25,13 @@ function App() {
       status: "INACTIVE",
       yearsOfExperience: 4
     }
-  ];
+  ]);
 
   return (
     <div className="page">
       <h1>Course Instructor</h1>
       <p>View a list of instructors</p>
-      <div className="instructor-list">
-        {instructors.map((instructor) => (
-          <div className='card' key={instructor.id}>
-            <h2>{instructor.name}</h2>
-            <p><strong>Specialization:</strong> {instructor.specialization}</p>
-            <p><strong>Experience:</strong> {instructor.yearsOfExperience}{instructor.yearsOfExperience + instructor.yearsOfExperience > 1 ? ' years' : ' year'}</p>
-            <p><strong>Status:</strong> {instructor.status}</p>
-          </div>
-        ))}
-      </div>
+      {InstructorList({ instructors, onSelect: setInstructors })}
     </div>
   )
 }
