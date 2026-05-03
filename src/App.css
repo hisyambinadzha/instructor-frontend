@@ -67,24 +67,32 @@
   font-weight: bold;
 }
 
-.toolbar{
+.toolbar {
   display: flex;
   gap: 10px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
-.toolbar input{
+.toolbar input {
   flex: 1;
+  min-width: 240px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
 }
-  
-.toolbar button{
+
+.toolbar button {
   padding: 10px 16px;
   border: 1px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.toolbar select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 @media (max-width: 700px) {
