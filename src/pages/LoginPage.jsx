@@ -14,9 +14,16 @@ function LoginPage() {
         setError(null);
         setLoading(true);
 
-        localStorage.setItem("token", "fake-token");
-         navigate("/dashboard");
-         setLoading(false);
+        try {
+            const data = await login(email, password);
+            localStorage.setItem("token", data.token);
+            navigate("/dashboard");
+        } catch (error) {
+            console.error(error);
+            setError("Login failed. Please check your email and password.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
