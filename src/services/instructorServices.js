@@ -7,3 +7,11 @@ export async function getInstructors() {
     }
     return response.json();
 }
+
+export async function getInstructorById(id) {
+    const response = await fetch(`${API_BASE_URL}/instructors/${id}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch instructor: ${response.statusText}`);
+    }
+    return response.json();
+}
