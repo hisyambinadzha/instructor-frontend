@@ -45,7 +45,7 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
 
         if (!formData.yearsExperience) {
             newError.yearsExperience = "Years of Experience is required";
-        } else if (isNaN(formData.yearsExperience) || formData.yearsExperience < 0) {
+        } else if (isNaN(formData.yearsExperience) || formData.yearsExperience <= 0) {
             newError.yearsExperience = "Years of Experience must be a positive number";
         }
 
@@ -111,3 +111,5 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
     );
 
 }
+
+export default InstructorForm;
