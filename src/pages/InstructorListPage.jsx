@@ -32,6 +32,11 @@ function InstructorDetailPage() {
                     <h1>Instructor List Page</h1>
                     <p>This is the instructor list page.</p>
                 </div>
+                {isAdmin && (
+                    <div className="page-actions">
+                        <Link to="/instructors/create">Create Instructor</Link>
+                    </div>
+                )}
             </div>
 
             {loading && <p>Loading...</p>}
@@ -48,6 +53,9 @@ function InstructorDetailPage() {
                             <p>Status: {instructor.status}</p>
                             <div className="card-actions">
                                 <Link to={`/instructors/${instructor.id}`}>View Details</Link>
+                                 {isAdmin && (
+                                    <Link to={`/instructors/${instructor.id}/edit`}>Edit</Link>
+                                )}
                             </div>
                         </div>
                     ))}
