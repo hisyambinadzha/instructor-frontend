@@ -103,9 +103,6 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
             </div>
             <div className="form-actions">
                 <button type="submit">{buttonText}</button>
-                <button type="button" onClick={() => navigate("/instructors")}>
-                    Cancel
-                </button>
             </div>
         </form>
     );
