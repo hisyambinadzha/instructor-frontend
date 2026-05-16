@@ -8,6 +8,8 @@ import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";
+import InstructorCreatePage from "./pages/InstructorCreatePage";
+import InstructorEditPage from "./pages/InstructorEditPage";
 
 function App() {
   return (
@@ -22,6 +24,22 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/instructors/create"
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <InstructorCreatePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/instructors/:id/edit"
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <InstructorEditPage />
             </ProtectedRoute>
           }
         />

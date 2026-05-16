@@ -28,10 +28,10 @@ function InstructorDetailPage() {
             <h1>Instructor Detail Page</h1>
             <p>This is the instructor detail page.</p>
             
-            <div className="card-grid">
+            <div className="card">
                 <InstructorDetail instructor={instructor} />
             </div>
-            <div>
+            <div className="page-actions">
                 <Link to="/instructors">Back to Instructor List</Link>
             </div>
         </section>

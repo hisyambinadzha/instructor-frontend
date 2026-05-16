@@ -8,7 +8,7 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
         name: initialData?.name || "",
         email: initialData?.email || "",
         specialization: initialData?.specialization || "",
-        yearsExperience: initialData?.yearsExperience || 0,
+        yearsExperience: initialData?.yearsExperience || "",
         status: initialData?.status || false,
     });
 

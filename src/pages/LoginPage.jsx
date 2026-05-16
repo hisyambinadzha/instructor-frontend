@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../services/authService";
 
 function LoginPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("admin@gmail.com");
+    const [password, setPassword] = useState("password");
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);

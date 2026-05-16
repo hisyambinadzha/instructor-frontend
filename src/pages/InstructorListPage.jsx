@@ -8,6 +8,9 @@ function InstructorDetailPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const role = localStorage.getItem("role");
+    const isAdmin = role === "ADMIN";
+
     useEffect(() => {
         async function fetchInstructors() {
             try {
@@ -24,8 +27,12 @@ function InstructorDetailPage() {
 
     return (
         <section>
-            <h1>Instructor List Page</h1>
-            <p>This is the instructor list page.</p>
+            <div className="page-header">
+                <div>
+                    <h1>Instructor List Page</h1>
+                    <p>This is the instructor list page.</p>
+                </div>
+            </div>
 
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
@@ -39,7 +46,9 @@ function InstructorDetailPage() {
                             <p>Specialization: {instructor.specialization}</p>
                             <p>Experience: {instructor.yearsExperience} years</p>
                             <p>Status: {instructor.status}</p>
-                            <Link to={`/instructors/${instructor.id}`}>View Details</Link>
+                            <div className="card-actions">
+                                <Link to={`/instructors/${instructor.id}`}>View Details</Link>
+                            </div>
                         </div>
                     ))}
                 </div>
