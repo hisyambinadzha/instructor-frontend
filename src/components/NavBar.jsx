@@ -19,6 +19,11 @@ function Navbar(){
                 <span className="nav-link-separator"> | </span>
                 <Link to="/dashboard">Dashboard</Link>
                 <span className="nav-link-separator"> | </span>
+                {token ? (
+                    <button onClick={handleLogout}>Logout</button>
+                ) : (
+                    <Link to="/login">Login</Link>
+                )}
             </div>
         </nav>
     );
