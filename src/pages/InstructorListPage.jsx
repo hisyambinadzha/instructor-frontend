@@ -47,7 +47,7 @@ function InstructorDetailPage() {
             ) : (
                 <div className="card-grid">
                     {instructors.map((instructor) => (
-                        <InstructorCard key={instructor.id} instructor={instructor} isAdmin={isAdmin} />
+                        <InstructorCard instructor={instructor} isAdmin={isAdmin} onDelete={null}/>
                     ))}
                 </div>
             )}

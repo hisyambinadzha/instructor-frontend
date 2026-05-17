@@ -25,10 +25,12 @@ function InstructorCreatePage() {
     return (
         <section>
             <div className="page-header">
-                <h1>Create Instructor</h1>
-                <p>Add a new instructor to the database.</p>
+                <div>
+                    <h1>Create Instructor</h1>
+                    <p>Add a new instructor to the database.</p>
+                </div>
             </div>
-            <InstructorForm initialData={null} onSubmit={handleCreateInstructor} buttonText="Create Instructor" /> 
+            <InstructorForm initialData={null} onSubmit={handleCreateInstructor} buttonText="Create Instructor" />
             {message && <p>{message}</p>}
             {error && <p>{error}</p>}
         </section>

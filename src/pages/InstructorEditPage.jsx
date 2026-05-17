@@ -56,10 +56,12 @@ function InstructorEditPage() {
     return (
         <section>
             <div className="page-header">
-                <h1>Edit Instructor</h1>
-                <p>Ipdate the details of the selected instructor.</p>
+                <div>
+                    <h1>Edit Instructor</h1>
+                    <p>Update the details of the selected instructor.</p>
+                </div>
             </div>
-            <InstructorForm initialData={instructor} onSubmit={handleEditInstructor} buttonText="Edit Instructor" /> 
+            <InstructorForm initialData={instructor} onSubmit={handleEditInstructor} buttonText="Edit Instructor" />
             {message && <p>{message}</p>}
             {error && <p>{error}</p>}
         </section>
