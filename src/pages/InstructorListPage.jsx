@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getInstructors } from "../services/instructorServices";
 import InstructorList from "../components/InstructorList";
+import InstructorCard from "../components/InstructorCard";
 
 function InstructorDetailPage() {
     const [instructors, setInstructors] = useState([]);
@@ -46,18 +47,7 @@ function InstructorDetailPage() {
             ) : (
                 <div className="card-grid">
                     {instructors.map((instructor) => (
-                        <div className="card" key={instructor.id} >
-                            <h2>{instructor.name}</h2>
-                            <p>Specialization: {instructor.specialization}</p>
-                            <p>Experience: {instructor.yearsExperience} years</p>
-                            <p>Status: {instructor.status}</p>
-                            <div className="card-actions">
-                                <Link to={`/instructors/${instructor.id}`}>View Details</Link>
-                                 {isAdmin && (
-                                    <Link to={`/instructors/${instructor.id}/edit`}>Edit</Link>
-                                )}
-                            </div>
-                        </div>
+                        <InstructorCard key={instructor.id} instructor={instructor} isAdmin={isAdmin} />
                     ))}
                 </div>
             )}

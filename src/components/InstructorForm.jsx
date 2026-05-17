@@ -9,17 +9,20 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
         email: initialData?.email || "",
         specialization: initialData?.specialization || "",
         yearsExperience: initialData?.yearsExperience || "",
-        status: initialData?.status || false,
+        status: initialData?.status || "",
     });
 
     const [error, setError] = useState(null);
 
     function handleChange(event) {
         const { name, value, type, checked } = event.target;
-        setFormData({
-            ...formData,
-            [name]: type === "checkbox" ? checked : value,
-        });
+        setFormData((prev) => ({
+            ...prev,
+            [name]:
+                type === "checkbox"
+                    ? checked ? "ACTIVE" : "INACTIVE" // map boolean → string
+                    : value,
+        }));
     }
 
     function validateForm() {
@@ -58,16 +61,14 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
         event.preventDefault();
         setError(null);
 
-        if (!validateForm()) {
-            return;
-        }
+        if (!validateForm()) return;
 
         const data = {
             name: formData.name,
             email: formData.email,
             specialization: formData.specialization,
             yearsExperience: formData.yearsExperience,
-            status: formData.status
+            status: formData.status ? "ACTIVE" : "INACTIVE",
         }
 
         await onSubmit(data);
@@ -96,8 +97,8 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
                 {error?.yearsExperience && <p className="error-message">{error.yearsExperience}</p>}
             </div>
             <div className="form-group checkbox-group">
-                <label>Status
-                    <input type="checkbox" name="status" checked={formData.status} onChange={handleChange} />
+                <label>
+                    <input type="checkbox" name="status" checked={formData.status === "ACTIVE"} onChange={handleChange} />
                     Active
                 </label>
             </div>
