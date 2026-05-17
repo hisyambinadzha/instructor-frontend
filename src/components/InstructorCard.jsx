@@ -12,7 +12,7 @@ function InstructorCard({ instructor, isAdmin, onDelete }) {
                 {isAdmin && (
                     <>
                         <Link to={`/instructors/${instructor.id}/edit`}>Edit</Link>
-                        <button className="danger-button" type="button" onClick={() => onDelete(instructor.id)}>Delete</button>
+                        <button className="danger-button" type="button" onClick={() => onDelete(instructor)}>Delete</button>
                     </>
                 )}
             </div>

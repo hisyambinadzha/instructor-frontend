@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import InstructorListPage from "./pages/InstructorListPage";
+import InstructorsPage from "./pages/InstructorsPage";
 import InstructorDetailPage from "./pages/InstructorDetailPage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -16,7 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainLayout />} >
         <Route index element={<HomePage />} />
-        <Route path="/instructors" element={<InstructorListPage />} />
+        <Route path="/instructors" element={<InstructorsPage />} />
         <Route path="/instructors/:id" element={<InstructorDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
