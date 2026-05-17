@@ -44,7 +44,7 @@ function InstructorsPage() {
 
             await deleteInstructor(instructor.id);
             setSuccess("Instructor deleted successfully");
-            setInstructors(instructors.filter(instructor => instructor.id !== id));
+            setInstructors((prevInstructors) => prevInstructors.filter((item) => item.id !== instructor.id));
         } catch (error) {
             setError(error.message);
         }
@@ -71,7 +71,7 @@ function InstructorsPage() {
         });
     }, [instructors, searchTerm]);
 
-    const totalPages = Math.ceil(filteredInstructors.length / pageSize);
+    const totalPages = Math.ceil(filteredInstructors.length / pageSize || 1);
     const paginatedInstructors = useMemo(() => {
         const startIndex = (currentPage - 1) * pageSize;
         const endIndex = startIndex + pageSize;
@@ -106,7 +106,7 @@ function InstructorsPage() {
             {error && <p className="error-message">Error: {error}</p>}
             {success && <p className="success-message">{success}</p>}
             <SearchBox searchTerm={searchTerm} onSearchChange={setSearchTerm} resultCount={filteredInstructors.length} totalCount={instructors.length} />
-            {filteredInstructors.length === 0 ? (
+            {paginatedInstructors.length === 0 ? (
                 <p>No instructors found</p>
             ) : (
                 <div className="card-grid">
