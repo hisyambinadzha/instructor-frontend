@@ -32,24 +32,6 @@ function InstructorsPage() {
         fetchInstructors();
     }, []);
 
-    async function handleDeleteInstructor(instructor) {
-        const shouldDelete = window.confirm(`Are you sure you want to delete this instructor? \n${instructor.name}`);
-        if (!shouldDelete) {
-            return;
-        }
-
-        try {
-            setError(null);
-            setSuccess("");
-
-            await deleteInstructor(instructor.id);
-            setSuccess("Instructor deleted successfully");
-            setInstructors((prevInstructors) => prevInstructors.filter((item) => item.id !== instructor.id));
-        } catch (error) {
-            setError(error.message);
-        }
-    }
-
     const filteredInstructors = useMemo(() => {
         const keyword = searchTerm.toLowerCase().trim();
 
@@ -111,7 +93,7 @@ function InstructorsPage() {
             ) : (
                 <div className="card-grid">
                     {paginatedInstructors.map((instructor) => (
-                        <InstructorCard key={instructor.id} instructor={instructor} isAdmin={isAdmin} onDelete={handleDeleteInstructor} />
+                        <InstructorCard key={instructor.id} instructor={instructor} isAdmin={isAdmin} onDelete={null} />
                     ))}
                 </div>
             )}
