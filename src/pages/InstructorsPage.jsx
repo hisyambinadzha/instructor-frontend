@@ -17,7 +17,6 @@ function InstructorsPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(5);
-    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         async function fetchInstructors() {
@@ -72,6 +71,22 @@ function InstructorsPage() {
         });
     }, [instructors, searchTerm]);
 
+    const totalPages = Math.ceil(filteredInstructors.length / pageSize);
+    const paginatedInstructors = useMemo(() => {
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        return filteredInstructors.slice(startIndex, endIndex);
+    }, [filteredInstructors, currentPage, pageSize]);
+    
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, pageSize]);
+
+    useEffect(() => {
+        if (currentPage > totalPages) {
+            setCurrentPage(totalPages);
+        }
+    }, [currentPage, totalPages]);
 
     return (
         <section>
@@ -95,7 +110,7 @@ function InstructorsPage() {
                 <p>No instructors found</p>
             ) : (
                 <div className="card-grid">
-                    {filteredInstructors.map((instructor) => (
+                    {paginatedInstructors.map((instructor) => (
                         <InstructorCard key={instructor.id} instructor={instructor} isAdmin={isAdmin} onDelete={handleDeleteInstructor} />
                     ))}
                 </div>
