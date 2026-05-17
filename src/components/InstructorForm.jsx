@@ -9,7 +9,7 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
         email: initialData?.email || "",
         specialization: initialData?.specialization || "",
         yearsExperience: initialData?.yearsExperience || "",
-        status: initialData?.status || "",
+        status: initialData?.status || "ACTIVE",
     });
 
     const [error, setError] = useState(null);
@@ -68,7 +68,7 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
             email: formData.email,
             specialization: formData.specialization,
             yearsExperience: formData.yearsExperience,
-            status: formData.status ? "ACTIVE" : "INACTIVE",
+            status: formData.status,
         }
 
         await onSubmit(data);
