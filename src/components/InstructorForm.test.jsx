@@ -25,8 +25,6 @@ describe("InstructorForm", () => {
 
         renderCreateInstructor({ onSubmit: mockSubmit });
 
-        screen.debug();
-
         await user.click(
             screen.getByRole("button", { name: /Cancel/i })
         );
