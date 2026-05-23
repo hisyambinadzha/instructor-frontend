@@ -77,23 +77,23 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <div className="form-group">
-                <label>Name</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Add name here... " />
+                <label htmlFor="name">Instructor Name</label>
+                <input id="name" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Add name here... " />
                 {error?.name && <p className="error-message">{error.name}</p>}
             </div>
             <div className="form-group">
-                <label>Email</label>
-                <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder="Add email here... " />
+                <label htmlFor="email">Email</label>
+                <input id="email" type="text" name="email" value={formData.email} onChange={handleChange} placeholder="Add email here... " />
                 {error?.email && <p className="error-message">{error.email}</p>}
             </div>
             <div className="form-group">
-                <label>Specialization</label>
-                <input type="text" name="specialization" value={formData.specialization} onChange={handleChange} placeholder="Add specialization here... " />
+                <label htmlFor="specialization">Specialization</label>
+                <input id="specialization" type="text" name="specialization" value={formData.specialization} onChange={handleChange} placeholder="Add specialization here... " />
                 {error?.specialization && <p className="error-message">{error.specialization}</p>}
             </div>
             <div className="form-group">
-                <label>Years of Experience</label>
-                <input type="number" name="yearsExperience" value={formData.yearsExperience} onChange={handleChange} placeholder="Add years of experience here... " />
+                <label htmlFor="yearsExperience">Years of Experience</label>
+                <input  id="yearsExperience" type="number" name="yearsExperience" value={formData.yearsExperience} onChange={handleChange} placeholder="Add years of experience here... " />
                 {error?.yearsExperience && <p className="error-message">{error.yearsExperience}</p>}
             </div>
             <div className="form-group checkbox-group">

@@ -1,0 +1,73 @@
+import { describe, expect, it, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
+
+import InstructorForm from "./InstructorForm";
+
+function renderCreateInstructor(props = {}) {
+    const defaultProps = {
+        initialData: null,
+        onSubmit: vi.fn(),
+        buttonText: "Create Instructor",
+    }
+    return (
+        <MemoryRouter>
+            <InstructorForm
+                {...defaultProps}
+                {...props}
+            />
+        </MemoryRouter>
+    );
+}
+
+describe("InstructorForm", () => {
+    it("should failed when submitting an empty form", async () => {
+        const user = userEvent.setup();
+        const mockSubmit = vi.fn();
+
+        renderCreateInstructor({ onSubmit: mockSubmit });
+
+        await user.click(
+            screen.getByRole("button", { name: /Create Instructor/i })
+        );
+
+        expect(screen.getByText(/name is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/email is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/specialization is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/yearsExperience is required/i)).toBeInTheDocument();
+
+        expect(mockSubmit).not.toHaveBeenCalled();
+    });
+
+    it("should pass when submitting avalid form", async () => {
+        const user = userEvent.setup();
+        const mockSubmit = vi.fn();
+
+        renderCreateInstructor({ onSubmit: mockSubmit });
+
+        await user.type(
+            screen.getByLabelText(/Instrcutor Name/i), "John Doe"
+        );
+        await user.type(
+            screen.getByLabelText(/email/i), "M2yYH@example.com"
+        );
+        await user.type(
+            screen.getByLabelText(/specialization/i), "Web Development"
+        );
+        await user.type(
+            screen.getByLabelText(/yearsExperience/i), "5"
+        );
+
+        await user.click(
+            screen.getByRole("button", { name: /Create Instructor/i })
+        );
+
+        expect(mockSubmit).toHaveBeenCalledWith({
+            name: "John Doe",
+            email: "M2yYH@example.com",
+            specialization: "Web Development",
+            yearsExperience: 5,
+        });
+    });
+}); 
