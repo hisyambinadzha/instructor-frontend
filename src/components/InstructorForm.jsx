@@ -77,7 +77,7 @@ function InstructorForm({ initialData, onSubmit, buttonText }) {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <div className="form-group">
-                <label htmlFor="name">Instructor Name</label>
+                <label htmlFor="name">Name</label>
                 <input id="name" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Add name here... " />
                 {error?.name && <p className="error-message">{error.name}</p>}
             </div>

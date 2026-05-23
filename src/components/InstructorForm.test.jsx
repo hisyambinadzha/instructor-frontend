@@ -10,13 +10,10 @@ function renderCreateInstructor(props = {}) {
         initialData: null,
         onSubmit: vi.fn(),
         buttonText: "Create Instructor",
-    }
-    return (
+    };
+    return render(
         <MemoryRouter>
-            <InstructorForm
-                {...defaultProps}
-                {...props}
-            />
+            <InstructorForm {...defaultProps} {...props} />
         </MemoryRouter>
     );
 }
@@ -28,14 +25,20 @@ describe("InstructorForm", () => {
 
         renderCreateInstructor({ onSubmit: mockSubmit });
 
+        screen.debug();
+
+        await user.click(
+            screen.getByRole("button", { name: /Cancel/i })
+        );
+
         await user.click(
             screen.getByRole("button", { name: /Create Instructor/i })
         );
 
-        expect(screen.getByText(/name is required/i)).toBeInTheDocument();
-        expect(screen.getByText(/email is required/i)).toBeInTheDocument();
-        expect(screen.getByText(/specialization is required/i)).toBeInTheDocument();
-        expect(screen.getByText(/yearsExperience is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/Name is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/Email is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/Specialization is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/Years of Experience is required/i)).toBeInTheDocument();
 
         expect(mockSubmit).not.toHaveBeenCalled();
     });
@@ -47,16 +50,18 @@ describe("InstructorForm", () => {
         renderCreateInstructor({ onSubmit: mockSubmit });
 
         await user.type(
-            screen.getByLabelText(/Instrcutor Name/i), "John Doe"
+            screen.getByLabelText(/Name/i), "John Doe"
+        );
+
+        await user.type(
+            screen.getByLabelText(/Email/i), "M2yYH@example.com"
+        );
+
+        await user.type(
+            screen.getByLabelText(/Specialization/i), "Web Development"
         );
         await user.type(
-            screen.getByLabelText(/email/i), "M2yYH@example.com"
-        );
-        await user.type(
-            screen.getByLabelText(/specialization/i), "Web Development"
-        );
-        await user.type(
-            screen.getByLabelText(/yearsExperience/i), "5"
+            screen.getByLabelText(/Years of Experience/i), "5"
         );
 
         await user.click(
@@ -67,7 +72,8 @@ describe("InstructorForm", () => {
             name: "John Doe",
             email: "M2yYH@example.com",
             specialization: "Web Development",
-            yearsExperience: 5,
+            yearsExperience: "5",
+            status: "ACTIVE",
         });
     });
 }); 
