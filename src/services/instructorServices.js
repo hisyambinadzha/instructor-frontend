@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://localhost:8080/api/v1';
+const API_DOMAIN = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const API_BASE_URL = `${API_DOMAIN}/api/v1`;
 
 function getHeaders() {
     const token = localStorage.getItem('token');

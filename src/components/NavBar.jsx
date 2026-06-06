@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-function Navbar(){
+function NavBar(){
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
     
@@ -28,4 +28,4 @@ function Navbar(){
         </nav>
     );
 }
-export default Navbar;
+export default NavBar;
